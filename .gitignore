@@ -1,3 +1,9 @@
+# xtend / xtext: Generated Files / Folders while building...
+### custom by user, no template
+xtend-gen/
+xtext-gen/
+generated/
+
 # Created by .ignore support plugin (hsz.mobi)
 ### NetBeans template
 nbproject/private/
