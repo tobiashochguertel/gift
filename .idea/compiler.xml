@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="gift.ide_main" target="1.6" />
+      <module name="gift.ide_test" target="1.6" />
+      <module name="gift.idea_main" target="1.6" />
+      <module name="gift.idea_test" target="1.6" />
+      <module name="gift.web_main" target="1.6" />
+      <module name="gift.web_test" target="1.6" />
+      <module name="gift_main" target="1.6" />
+      <module name="gift_test" target="1.6" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

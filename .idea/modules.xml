@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/gift.parent/gift/gift.iml" filepath="$PROJECT_DIR$/gift.parent/gift/gift.iml" group="gift" />
+      <module fileurl="file://$PROJECT_DIR$/gift.parent/gift.ide/gift.ide.iml" filepath="$PROJECT_DIR$/gift.parent/gift.ide/gift.ide.iml" group="gift.ide" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gift.ide/gift.ide_main.iml" filepath="$PROJECT_DIR$/.idea/modules/gift.ide/gift.ide_main.iml" group="gift.ide" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gift.ide/gift.ide_test.iml" filepath="$PROJECT_DIR$/.idea/modules/gift.ide/gift.ide_test.iml" group="gift.ide" />
+      <module fileurl="file://$PROJECT_DIR$/gift.parent/gift.idea/gift.idea.iml" filepath="$PROJECT_DIR$/gift.parent/gift.idea/gift.idea.iml" group="gift.idea" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gift.idea/gift.idea_main.iml" filepath="$PROJECT_DIR$/.idea/modules/gift.idea/gift.idea_main.iml" group="gift.idea" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gift.idea/gift.idea_test.iml" filepath="$PROJECT_DIR$/.idea/modules/gift.idea/gift.idea_test.iml" group="gift.idea" />
+      <module fileurl="file://$PROJECT_DIR$/gift.parent/gift.parent.iml" filepath="$PROJECT_DIR$/gift.parent/gift.parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gift.parent/gift.web/gift.web.iml" filepath="$PROJECT_DIR$/gift.parent/gift.web/gift.web.iml" group="gift.web" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gift.web/gift.web_main.iml" filepath="$PROJECT_DIR$/.idea/modules/gift.web/gift.web_main.iml" group="gift.web" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gift.web/gift.web_test.iml" filepath="$PROJECT_DIR$/.idea/modules/gift.web/gift.web_test.iml" group="gift.web" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gift/gift_main.iml" filepath="$PROJECT_DIR$/.idea/modules/gift/gift_main.iml" group="gift" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gift/gift_test.iml" filepath="$PROJECT_DIR$/.idea/modules/gift/gift_test.iml" group="gift" />
+    </modules>
+  </component>
+</project>
