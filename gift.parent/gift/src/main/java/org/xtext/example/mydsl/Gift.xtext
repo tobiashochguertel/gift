@@ -2,10 +2,173 @@ grammar org.xtext.example.mydsl.Gift with org.eclipse.xtext.common.Terminals
 
 generate gift "http://www.xtext.org/example/mydsl/Gift"
 
-Quiz :
+GIFTQuestions :
   (elements+=Question)*
 ;
 
 Question :
-  name=STRING ('{' ( 'T' | 'E' )+ '}')?
+  EssayQuestion | Description | QuestionEmbeddedAnswers | QuestionAnswersAtEnd
+  //  name=STRING ('{' ( 'T' | 'E' )+ '}')?
+;
+
+EssayQuestion :
+  title=QuestionTitle? _ stem=QuestionStem _ '{' _ '}' _ QuestionSeparator
+;
+
+QuestionTitle :
+  '::'title=Text'::'
+;
+
+QuestionStem :
+  stem=RichText
+;
+
+QuestionSeparator :
+  EndOfLine EndOfLine+ | EndOfLine? EndOfFile
+;
+
+AnswerDetails :
+  MatchingQuestion | TrueFalseQuestion | MCQuestion | NumericalQuestion
+;
+
+MatchingQuestion :
+  '{' _ matchPairs=Matches _ '}'
+;
+
+Matches :
+  matchPairs=(Match)+
+;
+
+Match :
+  _ '=' _ left=Text _ '->' _ right=Text _
+;
+
+MCQuestion :
+  '{' _ choices=Choices _ '}'
+;
+
+Choices :
+  choices=(Choice)+
+;
+
+Choice :
+  _ choice=([=~] Weight? Text) feedback=Feedback? _
+;
+
+Weight :
+  '%' percent=([-]? PercentValue) '%'
+;
+
+PercentValue :
+  '100'
+  // tbd
+;
+Feedback :
+  '#' feedback=Text
+;
+
+TrueFalseQuestion :
+  '{' _ isTrue=TrueOrFalseType feedback=(Feedback? Feedback?) _ '}'
+;
+
+TrueOrFalseType :
+  isTrue=(TrueType | FalseType)
+;
+
+TrueType :
+  ('TRUE' | 'T')
+;
+
+FalseType :
+  ('FALSE' | 'F')
+;
+
+NumericalQuestion :
+  '{' _ '#' _ numericalAnswers=NumericalAnswers _ '}'
+;
+
+NumericalAnswers :
+  MultipleNumericalChoices | SingleNumericalAnswer
+;
+
+MultipleNumericalChoices :
+  choices=(NumericalChoice)+
+;
+
+NumericalChoice :
+  _ choice=([=~] Weight? SingleNumericalAnswer) _ feedback=Feedback? _
+;
+SingleNumericalAnswer :
+  NumberWithRange | NumberHighLow | NumberAlone
+;
+
+NumberWithRange :
+  number=Number ':' range=Number
+;
+
+NumberHighLow :
+  numberHigh=Number '..' numberLow=Number
+;
+
+NumberAlone :
+  number=Number
+;
+
+Text :
+  txt=TextChar+
+;
+
+TextChar :
+  (UnescapedChar | EscapeSequence)
+;
+
+EscapeChar :
+  '\\'
+;
+
+EscapeSequence :
+  EscapeChar sequence=( "\\" | "~" | "=" | "#" | "{" | "}" )
+;
+
+UnescapedChar :
+  // [\u0080-\u024f] / [A-Z]i / [0-9] / ' ' / [.+><()!?'"%,] / '*' / ('-' !'>') { return '-'} / (EndOfLine !EndOfLine) {return ' '}
+  'tbd'
+;
+ControlChar :
+  '=' | '~' | "#" | '{' | '}' | '\\'
+;
+
+RichText :
+  Text
+;
+
+Number :
+  chars=[0-9]+ frac=NumberFraction?
+;
+NumberFraction :
+  "." chars=[0-9]*
+;
+
+_ :
+  (EndOfLine !EndOfLine | Space | Comment | Ignore)*
+;
+
+Ignore :
+  '[markdown]'
+;
+
+Comment :
+  '//' (!EndOfLine .)* ( EndOfLine | EndOfFile)
+;
+
+Space :
+  ' ' | '\t'
+;
+
+EndOfLine :
+  '\r\n' | '\n' | '\r'
+;
+
+EndOfFile :
+  !.
 ;
