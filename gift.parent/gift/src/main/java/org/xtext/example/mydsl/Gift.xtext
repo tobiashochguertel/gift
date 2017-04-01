@@ -2,8 +2,10 @@ grammar org.xtext.example.mydsl.Gift with org.eclipse.xtext.common.Terminals
 
 generate gift "http://www.xtext.org/example/mydsl/Gift"
 
-Model:
-	greetings+=Greeting*;
-	
-Greeting:
-	'Hello' name=ID '!';
+Quiz :
+  (elements+=Question)*
+;
+
+Question :
+  name=STRING ('{' ( 'T' | 'E' )+ '}')?
+;

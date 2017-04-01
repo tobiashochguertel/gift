@@ -1,0 +1,93 @@
+<idea-plugin version="2">
+	<extensions defaultExtensionNs="org.eclipse.xtext.idea">
+		<package
+			uri="http://www.xtext.org/example/mydsl/Gift"
+			class="org.xtext.example.mydsl.gift.GiftPackage"
+		/>
+		<resourceFactory 
+			type="gift"
+			class="org.eclipse.xtext.resource.IResourceFactory"
+			factoryClass="org.xtext.example.mydsl.idea.GiftExtensionFactory"
+		/>
+		<resourceServiceProvider
+			uriExtension="gift"
+			class="org.eclipse.xtext.idea.resource.IResourceIdeaServiceProvider"
+			factoryClass="org.xtext.example.mydsl.idea.GiftExtensionFactory"
+		/>
+
+		<lang.setup
+			language="org.xtext.example.mydsl.Gift"
+			implementationClass="org.xtext.example.mydsl.idea.GiftIdeaSetup"
+		/>
+	</extensions>
+
+	<extensions defaultExtensionNs="com.intellij">
+		<psi.treeChangePreprocessor implementation="org.xtext.example.mydsl.idea.lang.psi.GiftCodeBlockModificationListener"/>
+
+		<fileTypeFactory implementation="org.xtext.example.mydsl.idea.lang.GiftFileTypeFactory"/>
+		<stubElementTypeHolder class="org.xtext.example.mydsl.idea.lang.GiftElementTypeProvider"/>
+		<lang.ast.factory 
+			language="org.xtext.example.mydsl.Gift"
+			factoryClass="org.xtext.example.mydsl.idea.GiftExtensionFactory"
+			implementationClass="org.eclipse.xtext.idea.lang.BaseXtextASTFactory"
+		/>
+		<lang.parserDefinition 
+			language="org.xtext.example.mydsl.Gift"
+			factoryClass="org.xtext.example.mydsl.idea.GiftExtensionFactory"
+			implementationClass="org.xtext.example.mydsl.idea.lang.parser.GiftParserDefinition"
+		/>
+		<lang.findUsagesProvider 
+			language="org.xtext.example.mydsl.Gift"
+			factoryClass="org.xtext.example.mydsl.idea.GiftExtensionFactory"
+			implementationClass="org.eclipse.xtext.idea.findusages.BaseXtextFindUsageProvider"
+		/>
+		<lang.refactoringSupport 
+			language="org.xtext.example.mydsl.Gift"
+			factoryClass="org.xtext.example.mydsl.idea.GiftExtensionFactory"
+			implementationClass="org.eclipse.xtext.idea.refactoring.BaseXtextRefactoringSupportProvider"
+		/>
+		<lang.namesValidator 
+			language="org.xtext.example.mydsl.Gift"
+			factoryClass="org.xtext.example.mydsl.idea.GiftExtensionFactory"
+			implementationClass="com.intellij.lang.refactoring.NamesValidator"
+		/>
+		<lang.syntaxHighlighterFactory key="org.xtext.example.mydsl.Gift" implementationClass="org.xtext.example.mydsl.idea.highlighting.GiftSyntaxHighlighterFactory" />
+		<lang.braceMatcher 
+			language="org.xtext.example.mydsl.Gift"
+			factoryClass="org.xtext.example.mydsl.idea.GiftExtensionFactory"
+			implementationClass="com.intellij.lang.PairedBraceMatcher"
+		/>
+		<annotator 
+			language="org.xtext.example.mydsl.Gift"
+			factoryClass="org.xtext.example.mydsl.idea.GiftExtensionFactory"
+			implementationClass="org.eclipse.xtext.idea.annotation.IssueAnnotator"
+		/>
+		<completion.contributor language="org.xtext.example.mydsl.Gift" implementationClass="org.xtext.example.mydsl.idea.completion.GiftCompletionContributor"/>
+		<pom.declarationSearcher implementation="org.xtext.example.mydsl.idea.lang.pom.GiftPomDeclarationSearcher"/>
+
+		<lang.psiStructureViewFactory 
+			language="org.xtext.example.mydsl.Gift"
+			factoryClass="org.xtext.example.mydsl.idea.GiftExtensionFactory"
+			implementationClass="com.intellij.lang.PsiStructureViewFactory"
+		/>
+		<facetType implementation="org.xtext.example.mydsl.idea.facet.GiftFacetType"/>
+      	<lang.documentationProvider 
+      		language="org.xtext.example.mydsl.Gift"
+      		factoryClass="org.xtext.example.mydsl.idea.GiftExtensionFactory"
+      		implementationClass="org.eclipse.xtext.idea.documentation.IdeaDocumentationProvider"
+      	/>
+		<colorSettingsPage implementation="org.xtext.example.mydsl.idea.highlighting.GiftColorSettingsPage"/>
+		<highlightVisitor implementation="org.xtext.example.mydsl.idea.highlighting.GiftSemanticHighlightVisitor"/>
+
+		<lang.formatter 
+			language="org.xtext.example.mydsl.Gift"
+			factoryClass="org.xtext.example.mydsl.idea.GiftExtensionFactory"
+			implementationClass="com.intellij.formatting.FormattingModelBuilder"
+		/>
+		<lang.commenter 
+			language="org.xtext.example.mydsl.Gift"
+			factoryClass="org.xtext.example.mydsl.idea.GiftExtensionFactory"
+			implementationClass="com.intellij.lang.CodeDocumentationAwareCommenter"
+		/>
+	</extensions>
+</idea-plugin>

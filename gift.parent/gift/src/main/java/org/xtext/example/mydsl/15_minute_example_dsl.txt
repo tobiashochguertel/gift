@@ -1,0 +1,107 @@
+grammar org.xtext.example.mydsl.Gift with org.eclipse.xtext.common.Terminals
+
+generate gift "http://www.xtext.org/example/mydsl/Gift"
+
+Domainmodel :
+  (elements+=AbstractElement)*;
+
+PackageDeclaration:
+  'package' name=QualifiedName '{'
+  (elements+=AbstractElement)*
+  '}';
+
+AbstractElement :
+  PackageDeclaration | Type | Import;
+
+QualifiedName:
+  ID ('.' ID)*;
+
+// If you use the name importedNamespace in a parser rule, the framework will treat the value as an import.
+// -> It even supports wildcards and handles them as expected!
+// Okay wo kann ich darüber lesen, woher soll man solch eine Besonderheit über das Wort "importedNamespace" wissen?!?
+Import:
+  'import' importedNamespace=QualifiedNameWithWildcard;
+
+QualifiedNameWithWildcard:
+  QualifiedName '.*'?;
+
+Type:
+  DataType | Entity;
+
+DataType:
+  'datatype' name=ID;
+
+// Please note that the bar (|) is not an alternative in the context of a cross-reference, but used to specify the syntax of the parsed string.
+Entity:
+  'entity' name=ID ('extends' superType=[Entity|QualifiedName])? '{'
+  (features+=Feature)*
+  '}';
+
+Feature:
+  (many?='many')? name=ID ':' type=[Type|QualifiedName];
+
+
+
+
+
+----------------------------------
+Language Name: Domainmodel,
+Extension: dmodel
+----------------------------------
+
+datatype String
+
+entity Blog {
+    title: String
+    many posts: Post
+}
+
+entity HasAuthor {
+    author: String
+}
+
+entity Post extends HasAuthor {
+    title: String
+    content: String
+    many comments: Comment
+}
+
+entity Comment extends HasAuthor {
+    content: String
+}
+
+
+
+----------------------------------
+Language Name: Domainmodel,
+Extension: dmodel
+----------------------------------
+
+datatype String
+
+package my.company.common {
+    entity HasAuthor {
+        author: String
+    }
+}
+
+package my.company.blog {
+
+import my.company.common.*
+
+entity Blog {
+title: String
+many posts: Post
+}
+
+entity Post extends my.company.common.HasAuthor {
+        title: String
+        content: String
+        many comments: Comment
+    }
+
+    entity Comment extends HasAuthor {
+        content: String
+    }
+
+}
